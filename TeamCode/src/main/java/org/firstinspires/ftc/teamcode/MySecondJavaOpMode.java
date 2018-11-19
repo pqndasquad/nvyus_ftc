@@ -4,15 +4,9 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DigitalChannel;
-import com.qualcomm.robotcore.hardware.DistanceSensor;
-import com.qualcomm.robotcore.hardware.DistanceSensor;
-import com.qualcomm.robotcore.hardware.Gyroscope;
-import com.qualcomm.robotcore.hardware.Servo;
-import com.qualcomm.robotcore.hardware.ServoController;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
-//this is the basic code which moves the robot and the arm
+
 
 
 @TeleOp
@@ -47,27 +41,25 @@ public class MySecondJavaOpMode extends LinearOpMode {
         runtime.reset();
 
         while (opModeIsActive()) {
-
-
             double leftPower;
             double rightPower;
             //change the negative
-            boolean button_press = gamepad1.a;
-            boolean reverse_button_press = gamepad1.b;
+            boolean button_press = gamepad2.a;
+            boolean reverse_button_press = gamepad2.b;
             double drive = gamepad1.left_stick_y;
             double turn  = -gamepad1.right_stick_x;
-            leftPower = Range.clip(drive + turn, -1.0, 1.0) ;
-            rightPower = Range.clip(drive - turn, -1.0, 1.0) ;
+            leftPower = Range.clip(drive + turn, -0.5, 0.5) ;
+            rightPower = Range.clip(drive - turn, -0.5, 0.5) ;
             capturing.setPower(200);
             leftDrive.setPower(leftPower);
             rightDrive.setPower(rightPower);
             if (button_press == true) {
-                arm.setPower(1000);
+                arm.setPower(500);
                 sleep(250);
                 arm.setPower(0);
             }
             if (reverse_button_press == true) {
-                arm.setPower(-1000);
+                arm.setPower(-500);
                 sleep(250);
                 arm.setPower(0);
             }
